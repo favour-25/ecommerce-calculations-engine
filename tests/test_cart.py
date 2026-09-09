@@ -35,6 +35,11 @@ class TestCart(unittest.TestCase):
         self.cart.add_item(self.product, 1)
         self.assertEqual(self.cart.calculate_discount(), 0)
 
+    def test_no_discount_exactly_at_threshold(self):
+        product = Product("Item", 10000, 1)
+        self.cart.add_item(product, 1)
+        self.assertEqual(self.cart.calculate_discount(), 0)
+
     def test_calculate_total(self):
         self.cart.add_item(self.product, 1)
         expected_total = 5000 + (5000 * 0.075)
